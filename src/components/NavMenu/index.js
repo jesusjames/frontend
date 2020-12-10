@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {
     Collapse, Container, Navbar, NavbarBrand,
-    NavbarToggler, NavItem, NavLink, ButtonDropdown,
-    Button, DropdownToggle, DropdownMenu, DropdownItem
+    NavbarToggler, NavItem, NavLink
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Logo } from '../../components';
+import { CartButton } from '../../components';
 import './NavMenu.css';
 
 export const NavMenu = () => {
@@ -20,7 +20,7 @@ export const NavMenu = () => {
 
     return (
         <header>
-            <Navbar className="navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" light>
+            <Navbar className="bg-header navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" light>
                 <Container>
                     <NavbarBrand tag={Link} to="/"><Logo /></NavbarBrand>
                     <NavbarToggler onClick={toggle} className="mr-2" />
@@ -31,17 +31,7 @@ export const NavMenu = () => {
                             </NavItem>
                         </ul>
                     </Collapse>
-                    <ButtonDropdown isOpen={isOpen} toggle={toggle}>
-                        <Button id="caret" color="primary">Carrito</Button>
-                        <DropdownToggle split color="primary" />
-                        <DropdownMenu>
-                            <DropdownItem header>Header</DropdownItem>
-                            <DropdownItem disabled>Action</DropdownItem>
-                            <DropdownItem>Another Action</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem>Another Action</DropdownItem>
-                        </DropdownMenu>
-                    </ButtonDropdown>
+                    <CartButton/>
                 </Container>
             </Navbar>
         </header>
@@ -49,3 +39,4 @@ export const NavMenu = () => {
 }
 
 export default React.memo(NavMenu);
+

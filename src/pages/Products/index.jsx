@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import { ProductItem } from '../../components';
-import * as ProductsStore from '../../store/Products';
+import { actionCreators } from '../../store/Products';
 
-export const Products = (props) => {
-    console.log(props);
+export const ProductsPage = (props) => {
     const { products } = props;
 
     useEffect(() => {
-        console.log('useEffect');
         props.getAllProducts();
     }, [])
 
@@ -20,7 +18,7 @@ export const Products = (props) => {
                     const {id, image, title, price} = product
                     return (
                         <Col key={id} md="3" xs="12" sm="6" className="mb-3">
-                            <ProductItem image={image}
+                            <ProductItem id={id} image={image}
                                 title={title}
                                 price={price}
                             />
@@ -33,17 +31,10 @@ export const Products = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps', state);
     return state.products
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getAllProducts: () => dispatch(ProductsStore.actionCreators.getAllProducts())
-    }
 }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
-)(React.memo(Products));
+    actionCreators
+)(React.memo(ProductsPage));

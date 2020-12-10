@@ -9,6 +9,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
+import "./assets/css/fontawesome/css/all.css";
 
 // creamos browser history para usarlo en el redux store
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');

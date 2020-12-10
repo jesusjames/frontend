@@ -3,3 +3,11 @@
     height: 25vh !important;
     object-fit: cover !important;
 }
+
+.w-70 {
+    width: 70%;
+}
+
+.w-30 {
+    width: 30%;
+}

@@ -21,8 +21,6 @@ export const ACTIONS_TYPES = {
 export const actionCreators = {
     getAllProducts: () => async (dispatch, getState) => {
         dispatch({ type: ACTIONS_TYPES.FETCH_PRODUCTS_START })
-        const appState = getState();
-        console.debug(appState);
         try{
             const response = await productsServices.getProducts();
             dispatch({ type: ACTIONS_TYPES.FETCH_PRODUCTS_SUCCESS, products: response })
@@ -35,13 +33,14 @@ export const actionCreators = {
 // ----------------
 // REDUCER 
 export const reducer = (state = ProductsState, action) => {
-    switch (action.type) {
+    const {type, products, error} = action;
+    switch (type) {
         case ACTIONS_TYPES.FETCH_PRODUCTS_START:
             return { ...state };
         case ACTIONS_TYPES.FETCH_PRODUCTS_SUCCESS:
-            return { ...state, products: action.products };
+            return { ...state, products };
         case ACTIONS_TYPES.FETCH_PRODUCTS_FAIL:
-            return { ...state, error: action.error };
+            return { ...state, error };
         default:
             return state;
     }
