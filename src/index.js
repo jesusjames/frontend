@@ -1,13 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
+import configureStore from './store/configureStore';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.css';
+
+// creamos browser history para usarlo en el redux store
+const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
+const history = createBrowserHistory({ basename: baseUrl });
+
+// Obtén la instancia de la tienda para toda la aplicación
+const store = configureStore(history);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
